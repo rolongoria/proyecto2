@@ -67,10 +67,16 @@ function createUser(){
 
     jsonObj = JSON.stringify(users);
     localStorage.setItem("users", jsonObj);
-    
-    
+
+    //Clear input fields after the user is created   
+    document.getElementById('firstname').value = '';
+    document.getElementById('lastname').value = '';
+    document.getElementById('username').value = '';
+    document.getElementById('email').value = '';
 
     displayTable();
+
+
 }
 
 
@@ -111,6 +117,12 @@ function updateUser(){
 
     jsonObj = JSON.stringify(users);
     localStorage.setItem("users", jsonObj);
+
+    // document.getElementById('firstnameUpdate').value = '';
+    // document.getElementById('lastnameUpdate').value = '';
+    // document.getElementById('usernameUpdate').value = '';
+    // document.getElementById('emailUpdate').value = '';
+
 
 
     displayTable();
