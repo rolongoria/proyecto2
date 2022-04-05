@@ -1,0 +1,13 @@
+.header, .footer{
+    background-color: lightgray;
+}
+
+
+.table-container{
+    background-color: rgb(241, 247, 247);
+    min-height: 600px;
+}
+
+.etiqueta{
+    min-width: 110px;
+}
