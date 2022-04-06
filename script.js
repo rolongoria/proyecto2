@@ -55,6 +55,13 @@ function createUser(){
 
     let email = document.getElementById('email').value;
 
+    //If one or more input fields are empty, an alert box will be displayed
+    if(firstName === "" || lastName === "" || userName === "" || email === ""){
+        //console.log("A field is empty");
+        alert("One or more input fields are empty");
+        return;
+    }
+
 
     let obj = {
         firstName: firstName,
