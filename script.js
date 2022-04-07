@@ -7,20 +7,22 @@ today = mm + '/' + dd + '/' + yyyy;
 document.getElementById("date").innerHTML = today;
 
 
-let users =[];
+let users =[];                                              //Empty array to store new user objects
 
-const headers = ['First Name', 'Last Name', 'Username', 'email', 'edit', 'delete'];
+const headers = ['First Name', 'Last Name', 'Username', 'email', 'edit', 'delete'];     //header titles for table
 
 let str = "";
 
 let createForm = document.getElementById('createUserForm');     //Variable to store the form to create users, it is used to hide or display the form
 let updateForm = document.getElementById('updateUserForm');     //Variable to store the form to update users, it is used to hide or display the form
 
-let indexAux = 0;
+let indexAux = 0;       //Aux variable to store the index when editing users
 
 //Function that call the needed methods to start the app
 function start(){
 
+    //If the localStorage is empty, will add an admin user at the first position, It will prevent error when it try to display table
+    //using an empty array of objects
     if(localStorage.length > 0){
     
         displayTable();
@@ -39,14 +41,14 @@ function start(){
     hideUpdateUserForm();
 }
 
-//Hide create user form 
+//Hide create user form and display update user form
 function hideCreateUserForm(){
     
     createForm.style.display = 'none';
     updateForm.style.display = '';
 }
 
-//Hide update user form
+//Hide update user form and display create user form
 function hideUpdateUserForm(){
     
     updateForm.style.display = 'none';
@@ -54,6 +56,8 @@ function hideUpdateUserForm(){
 
 }
 
+//Function to create user
+//First add user into array of objects, then add the array of objects to localStorage
 function createUser(){
     let firstName = document.getElementById('firstname').value;
 
@@ -96,6 +100,7 @@ function createUser(){
 
 
 //Edit info of Users
+//This will get the info and display it in the input fields
 function editUser(i){
 
     indexAux = i;
@@ -116,6 +121,7 @@ function editUser(i){
     mail.setAttribute('value', `${users[i].email}`);
 }
 
+//When the update button is pressed, it will replace the info in the array of objects, then it will replace the localStorage
 function updateUser(){
     
 
@@ -157,7 +163,7 @@ function deleteElement(i){
 }
 
 
-
+//Gets the string from localStorage and create an array of objects, then we can iterate the array to generate and display the table
 function displayTable(){
 
 
@@ -176,6 +182,8 @@ function displayTable(){
     let thead = document.createElement('thead');
     let headerRow = document.createElement('tr');
 
+
+    //Iterate through the headers array to create table headers
     headers.forEach(headerText => {
         let header = document.createElement('th');
         let textNode = document.createTextNode(headerText);
@@ -191,10 +199,10 @@ function displayTable(){
     //The forEach iterate through the objects array
     users.forEach((user, index) => {
 
-    
         let bodyRow = document.createElement('tr');
 
         //The for in iterate through the properties of an individual object
+        //Create a new tr for each user
         for (let key in user){
             let cell = document.createElement('td');
             let textNode = document.createTextNode(user[key]);
