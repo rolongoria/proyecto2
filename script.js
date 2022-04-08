@@ -9,7 +9,7 @@ document.getElementById("date").innerHTML = today;
 
 let users =[];                                              //Empty array to store new user objects
 
-const headers = ['First Name', 'Last Name', 'Username', 'email', 'edit', 'delete'];     //header titles for table
+const headers = ['First Name', 'Last Name', 'Username', 'Email', 'Actions'];     //header titles for table
 
 let str = "";
 
@@ -70,7 +70,7 @@ function createUser(){
     //If one or more input fields are empty, an alert box will be displayed
     if(firstName === "" || lastName === "" || userName === "" || email === ""){
         //console.log("A field is empty");
-        alert("One or more input fields are empty");
+        alert("One or more input fields are empty!!");
         return;
     }
 
@@ -162,6 +162,16 @@ function deleteElement(i){
     displayTable();
 }
 
+//Clear localStorage
+function clearLocalStorage(){
+    let agree = confirm("Are you sure to execute this action?");
+    if(agree){
+        localStorage.clear();
+        start();
+    }
+    
+}
+
 
 //Gets the string from localStorage and create an array of objects, then we can iterate the array to generate and display the table
 function displayTable(){
@@ -220,21 +230,23 @@ function displayTable(){
         button.setAttribute('class', 'btn btn-outline-warning');
         button.setAttribute('id', 'editButton' + index);
         button.setAttribute('onclick', `editUser(${index})`);
+        button.style.marginRight = "10px";
         buttonCell.appendChild(button);
-        bodyRow.appendChild(buttonCell);
+       // bodyRow.appendChild(buttonCell);
 
         //Add Delete button to each row
         let button2 = document.createElement('button');
-        let button2Cell = document.createElement("td");
+        //let button2Cell = document.createElement("td");
         button2.innerText = "delete";
         //button2.className = "btn btn-danger";
         button2.setAttribute('class', 'btn btn-outline-danger');
         button2.setAttribute('id', 'deleteButton' + index);
         button2.setAttribute('onclick', `deleteElement(${index})`);
-        button2Cell.appendChild(button2);
-        bodyRow.appendChild(button2Cell);
+        //button2.style.marginLeft = "5px";
+        buttonCell.appendChild(button2);
+        bodyRow.appendChild(buttonCell);
 
-        //rowKey++;      //Update the value for the button's ID for next row  //replaced by index variable
+        
         
 
 
